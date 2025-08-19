@@ -2,24 +2,37 @@
 
 ## 1.1 Parts of Minecraft
 
-Broadly speaking, Minecraft consists of four different things: blocks, items, entities, and data. Blocks are the things that make up the terrain and buildings in the world, and items are the things in your inventory and chests.
+Broadly speaking, Minecraft consists of four different **game objects**: blocks, items, entities, and data. Blocks are the things that make up the terrain and buildings in the world, and items are the things in your inventory and chests. Entities and data are more complicated. Entities are typically (but not always) animals and monsters, and data is a broad term for things like language files and textures.
 
-Entities and data are more complicated. Entities *usually* have the ability to move. This includes mobs (animals and monsters), boats, and minecarts. It also includes blocks that can fall, but only *while* they are in the falling state.  Some less intuitive examples are projectiles (snowballs, tridents, and eggs when thrown), experience orbs, armor stands, and dropped items. Exceptions to the moving requirement include item frames, paintings, and the knot of a lead when tied to a fence.
+### 1.1.1 Items
+
+Items are the simplest game object. 
+
+### 1.1.2 Blocks
+
+### 1.1.3 Entities
+Entities *usually* have the ability to move. This includes mobs (animals and monsters), boats, and minecarts. It also includes blocks that can fall, but only *while* they are in the falling state.  Some less intuitive examples are projectiles (snowballs, tridents, and eggs when thrown), experience orbs, armor stands, and dropped items. Exceptions to the moving requirement include item frames, paintings, and the knot of a lead when tied to a fence.
+
+### 1.1.4 Data
 
 Data is a way of group technical information. It includes loot tables (the list of items dropped when killing a mob or breaking a block), recipes, blockstates, models, textures, localization, and tags.
 
-### 1.1.4 CreativeModeTab
+### 1.1.5 CreativeModeTab
 
-## 1.2 Code of a mod
+## 1.2 Relationships between parts
 
-### 1.2.1 Classes
+There are many ways that one 
+
+## 1.3 Code of a mod
+
+### 1.3.1 Classes
 The three different categories we see in the game correspond to three different **classes**: the `Block` class, the `Item` class, and the `Entity` class. Minecraft has these base classes defined, as well as several classes that extend the base classes. For example these classes extend the base `Block` class:
 -   `LeavesBlock`
 -   `CropBlock`
 -   `SaplingBlock`
 It is also possible to write your *own* extension to the base classes. For example, you might write a `CrystalBlock` class that extends `Block`. This would be useful if there are several different *types* of crystal block you want to add. For example, maybe all crystal blocks have the same properties like explosion resistance and being mineable with a pickaxe, but come in different colors.
 
-### 1.2.2 Deferred register
+### 1.3.2 Deferred register
 In order for the game to recognize the blocks, items, and entities that we add, we must **register** these things. We do this using a **deferred register**.
 
 The `DeferredRegister<>` class basically works like an `Array`: it stores a "list" of things. An instance `DeferredRegister<Block>` would be a list of the blocks we want to add.
@@ -28,19 +41,19 @@ There is a complication. Each base class, like `Item`, contains a variety of inf
 
 So instead, we create a `RegistryObject<>` for each thing we want to add to the game. Each `RegistryObject<>` **maps** a `String`, called the **key**, to one of the game objects, called the **value**. Then, instead of calling the entire game object, we can use the key in order to access only the property that we need.
 
-### 1.2.3 Datagen
+### 1.3.3 Datagen
 
-#### 1.1.5.1 Blockstates
+#### 1.3.3.1 Blockstates
 
-#### 1.1.5.2 Item models
-#### 1.1.5.3 Block tags
-#### 1.1.5.4 Item Tags
+#### 1.3.3.2 Item models
+#### 1.3.3.3 Block tags
+#### 1.3.3.4 Item Tags
 
-#### 1.1.5.5 Recipes
+#### 1.3.3.5 Recipes
 
-#### 1.1.5.6 Worldgen
+#### 1.3.3.6 Worldgen
 
-#### 1.1.5.7 Loot
+#### 1.3.3.7 Loot
 
 A mod can then be summarized as:
 1. Instances of the base classes, or extensions to the base classes:
