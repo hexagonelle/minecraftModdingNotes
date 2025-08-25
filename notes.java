@@ -365,14 +365,53 @@ RegistryObject<>{
 		)
 	)
 }
-
-
-
-
+//produces
+RegistryObject<>{
+	this.name = ResourceLocation(
+		this.namespace = modid,
+		this.path = blockID
+	);
+	this.key = ResourceKey{		
+		this.registryName = ResourceLocation(
+			this.namespace = "minecraft",
+			this.path = "block"
+		),
+		this.location = ResourceLocation(
+			this.namespace = modid,
+			this.path = blockID
+		)
+	)
+}
 
 // NEXT //
 
 item.getId()
 // produces
+ResourceLocation(
+		this.namespace = modid,
+		this.path = itemID
+	);
 
+// NEXT //
 
+item.getId().getPath()
+// produces
+blockID
+
+// NEXT //
+
+ForgeRegistries.ITEMS.getKey(itemRegistryObject.get())
+// produces
+ResourceLocation(
+	this.namespace = modid,
+	this.path = itemID
+)
+
+// NEXT //
+
+ForgeRegistries.ITEMS.getKey(itemRegistryObject.get())
+// produces
+ResourceLocation(
+	this.namespace = modid,
+	this.path = itemID
+)
